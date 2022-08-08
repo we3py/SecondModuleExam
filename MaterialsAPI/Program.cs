@@ -18,6 +18,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSqlServer<MaterialsContext>(builder.Configuration.GetConnectionString("MaterialsDB"));
 builder.Services.AddRepositories();
+builder.Services.AddServices();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton(mapper);
 
