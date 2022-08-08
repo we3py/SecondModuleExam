@@ -8,3 +8,5 @@ global using MaterialsAPI.DTOs.Author;
 global using MaterialsAPI.DTOs.Material;
 global using MaterialsAPI.DTOs.MaterialReview;
 global using MaterialsAPI.DTOs.MaterialType;
+global using System.ComponentModel.DataAnnotations;
+
