@@ -1,7 +1,4 @@
-﻿using MaterialsAPI.Data.Entities;
-using MaterialsAPI.DTOs.MaterialReview;
-
-namespace MaterialsAPI.MapperProfiles
+﻿namespace MaterialsAPI.MapperProfiles
 {
     public class MaterialReviewProfile : Profile
     {

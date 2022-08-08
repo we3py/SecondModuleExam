@@ -1,6 +1,4 @@
-﻿using MaterialsAPI.DTOs.Material;
-
-namespace MaterialsAPI.DTOs.Author
+﻿namespace MaterialsAPI.DTOs.Author
 {
     public class AuthorReadDTO
     {

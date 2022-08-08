@@ -1,8 +1,4 @@
-﻿
-using MaterialsAPI.Data.Entities;
-using MaterialsAPI.DTOs.MaterialType;
-
-namespace MaterialsAPI.MapperProfiles
+﻿namespace MaterialsAPI.MapperProfiles
 {
     public class MaterialTypeProfile : Profile
     {

@@ -1,8 +1,4 @@
-﻿using AutoMapper;
-using MaterialsAPI.Data.Entities;
-using MaterialsAPI.DTOs.Author;
-
-namespace MaterialsAPI.MapperProfiles
+﻿namespace MaterialsAPI.MapperProfiles
 {
     public class AuthorProfile : Profile
     {
