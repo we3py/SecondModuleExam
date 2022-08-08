@@ -26,6 +26,6 @@
             => _materialsContext.Set<T>().Update(entity);
 
         public async Task<T> GetEntityAsync(int id)
-            => await _materialsContext.Set<T>().FindAsync(id)
+            => await _materialsContext.Set<T>().FindAsync(id);
     }
 }
