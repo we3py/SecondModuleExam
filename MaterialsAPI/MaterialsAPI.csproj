@@ -18,4 +18,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MaterialsAPI.Data\MaterialsAPI.Data.csproj" />
+  </ItemGroup>
+
 </Project>
