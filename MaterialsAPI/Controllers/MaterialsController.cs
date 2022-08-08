@@ -1,7 +1,9 @@
 ﻿using MaterialsAPI.Data.Entities;
+using MaterialsAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace MaterialsAPI.Controllers
 {
@@ -9,41 +11,53 @@ namespace MaterialsAPI.Controllers
     [ApiController]
     public class MaterialsController : ControllerBase
     {
-        [HttpGet]
-        [Authorize(Roles = "admin, user")]
-        public async Task<List<Material>> GetMaterials()
+        private EducationMaterialService _materialService;
+
+        public MaterialsController(EducationMaterialService materialService)
         {
-            throw new NotImplementedException();
+            _materialService = materialService;
+        }
+
+        [SwaggerOperation(Summary = "Get all materials")]
+        [HttpGet]
+        //[Authorize(Roles = "admin, user")]        
+        public async Task<IActionResult> GetMaterials()
+        {
+            return Ok(await _materialService.GetAllMaterials());
         }
 
         [HttpGet]
-        [Route("[controller]/id")]
-        [Authorize(Roles = "admin, user")]
-        public async Task<Material> GetMaterial(int id)
+        [Route("{id}")]
+        //[Authorize(Roles = "admin, user")]
+        public async Task<IActionResult> GetMaterial(int id)
         {
-            throw new NotImplementedException();
+            return Ok(await _materialService.GetMaterial(id));
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
-        public async Task AddMaterial(Material material)
+        //[Authorize(Roles = "admin")]
+        public async Task<IActionResult> AddMaterial(MaterialCreateUpdateDTO material)
         {
-            throw new NotImplementedException();
+            var id = await _materialService.AddMaterial(material);
+            return Created($"{HttpContext.Request.Path}/{id}", $"new Material with id= [{id}] added");
         }
 
         [HttpPut]
-        [Authorize(Roles = "admin")]
-        public async Task UpdateMaterial(Material material)
+        [Route("{id}")]
+        //[Authorize(Roles = "admin")]
+        public async Task<IActionResult> UpdateMaterial(int materialToUpdateId, MaterialCreateUpdateDTO material)
         {
-            throw new NotImplementedException();
+            var id = await _materialService.UpdateMaterial(materialToUpdateId, material);
+            return Created($"{HttpContext.Request.Path}/{id}", $"new Material with id= [{id}] updated");
         }
 
         [HttpDelete]
-        [Route("[controller]/id")]
-        [Authorize(Roles = "admin")]
-        public async Task DeleteMaterial(int id)
+        [Route("{id}")]
+        //[Authorize(Roles = "admin")]
+        public async Task<IActionResult> DeleteMaterial(int materialId)
         {
-            throw new NotImplementedException();
+            var id = await _materialService.DeleteMaterial(materialId);
+            return Created($"{HttpContext.Request.Path}/{id}", $"Material with id= [{id}] deleted");
         }
     }
 }
