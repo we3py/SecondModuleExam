@@ -22,14 +22,20 @@
                 .Where(m => typeId == m.MaterialTypeId)
                 .ToListAsync();
 
-        public async Task<ICollection<Material>> GetMaterials(int typeId)
+        public async Task<ICollection<Material>> GetMaterials()
             => await MaterialContext.Materials
                 .Include(m => m.Reviews)
                 .Include(m => m.MaterialType)
                 .Include(m => m.Author)
                 .ToListAsync();
 
-
-
+        public async Task<Material> GetMaterialById(int id)
+            => await MaterialContext.Materials
+                .Include(m => m.Reviews)
+                .Include(m => m.MaterialType)
+                .Include(m => m.Author)
+                .Where(m => m.Id == id)
+                .FirstOrDefaultAsync();
+                
     }
 }

@@ -1,10 +1,11 @@
 ﻿
 namespace MaterialsAPI.Data.DAL.Repositories
 {
-    public interface IMaterialsRepository
+    public interface IMaterialsRepository : IRepository<Material>
     {
-        Task<ICollection<Material>> GetMaterials(int typeId);
+        Task<ICollection<Material>> GetMaterials();
         Task<ICollection<Material>> GetMaterialsByAuthor(int authorId);
         Task<ICollection<Material>> GetMaterialsByType(int typeId);
+        Task<Material> GetMaterialById(int id);
     }
 }
