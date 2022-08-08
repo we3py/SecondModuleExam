@@ -1,7 +1,4 @@
-﻿using MaterialsAPI.Data.DAL.Interfaces;
-using MaterialsAPI.Data.DAL.Repositories;
-
-namespace MaterialsAPI.Utilties
+﻿namespace MaterialsAPI.Utilties
 {
     public static class ExtensionMethods
     {
