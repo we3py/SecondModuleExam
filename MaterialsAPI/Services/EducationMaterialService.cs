@@ -17,7 +17,7 @@
             var materials = await _unitOfWork.MaterialsRepository.GetMaterials();
 
             if (materials == null)
-                throw new Exception("Materials not exist");
+                throw new ArgumentNullException("Materials not exist");
 
             foreach (var material in materials)
             {
@@ -33,7 +33,7 @@
             var material = await _unitOfWork.MaterialsRepository.GetMaterialById(materialId);
 
             if (material == default)
-                throw new Exception("Material not exist");
+                throw new KeyNotFoundException("Material not exist");
 
             return _mapper.Map<MaterialReadDTO>(material);
         }
@@ -51,7 +51,7 @@
         {
             var material = await _unitOfWork.MaterialsRepository.GetMaterialById(materialToUpdateId);
             if (material == null)
-                throw new Exception("Material not exist");
+                throw new KeyNotFoundException("Material not exist");
 
             var editedMaterial = _mapper.Map(updatedMaterial, material);
              
@@ -65,7 +65,7 @@
         {
             var material = await _unitOfWork.MaterialsRepository.GetEntityAsync(materialId);
             if (material == null)
-                throw new Exception("Material dont exist");
+                throw new KeyNotFoundException("Material dont exist");
 
             _unitOfWork.MaterialsRepository.Delete(material);
             await _unitOfWork.MaterialsRepository.SaveAsync();
