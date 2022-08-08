@@ -1,5 +1,15 @@
+using MaterialsAPI.MapperProfiles;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var mapConfig = new AutoMapper.MapperConfiguration(c =>
+{
+    c.AddProfile(new AuthorProfile());
+    c.AddProfile(new MaterialProfile());
+    c.AddProfile(new MaterialReviewProfile());
+    c.AddProfile(new MaterialTypeProfile());
+});
+var mapper = mapConfig.CreateMapper();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -9,7 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSqlServer<MaterialsContext>(builder.Configuration.GetConnectionString("MaterialsDB"));
 builder.Services.AddRepositories();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 
