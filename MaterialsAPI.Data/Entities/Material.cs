@@ -10,7 +10,7 @@
         public string Location { get; set; }
         public int MaterialTypeId { get; set; }
         public MaterialType MaterialType { get; set; }
-        public ICollection<MaterialReview> Reviews { get; set; }
+        public ICollection<MaterialReview>? Reviews { get; set; }
         public DateTime PublicationDate { get; set; }
 
     }
