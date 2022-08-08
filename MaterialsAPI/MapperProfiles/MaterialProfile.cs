@@ -7,7 +7,8 @@
             CreateMap<Material, MaterialReadDTO>()
                 .ForMember(m => m.AuthorName, opt => opt.MapFrom(m => m.Author.AuthorName))
                 .ForMember(m => m.MaterialTypeName, opt => opt.MapFrom(m => m.MaterialType.Name));
-            CreateMap<MaterialCreateUpdateDTO, Material>();
+            CreateMap<MaterialCreateUpdateDTO, Material>()
+                .ForMember(m => m.PublicationDate, opt => opt.MapFrom(m => DateTime.Parse(m.PublicationDate)));
         }
     }
 }
