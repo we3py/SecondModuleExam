@@ -1,12 +1,4 @@
-﻿using MaterialsAPI.Data.Context;
-using MaterialsAPI.Data.DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MaterialsAPI.Data.DAL.Repositories
+﻿namespace MaterialsAPI.Data.DAL.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
