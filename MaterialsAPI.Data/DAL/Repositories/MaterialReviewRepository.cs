@@ -1,6 +1,6 @@
 ﻿namespace MaterialsAPI.Data.DAL.Repositories
 {
-    public class MaterialReviewRepository : Repository<MaterialReview>
+    public class MaterialReviewRepository : Repository<MaterialReview>, IMaterialReviewRepository
     {
         public MaterialReviewRepository(MaterialsContext materialsContext) : base(materialsContext)
         {

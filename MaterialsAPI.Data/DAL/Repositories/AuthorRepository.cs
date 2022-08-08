@@ -1,6 +1,6 @@
 ﻿namespace MaterialsAPI.Data.DAL.Repositories
 {
-    public class AuthorRepository : Repository<Author>
+    public class AuthorRepository : Repository<Author>, IAuthorRepository
     {
         public AuthorRepository(MaterialsContext materialsContext) : base(materialsContext)
         {
