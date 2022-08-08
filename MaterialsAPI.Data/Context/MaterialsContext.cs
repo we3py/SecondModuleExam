@@ -10,6 +10,10 @@ namespace MaterialsAPI.Data.Context
 {
     public class MaterialsContext : DbContext
     {
+        public MaterialsContext(DbContextOptions options) : base(options)
+        {
+        }
+
         public DbSet<Author> Authors { get; set; }
         public DbSet<Material> Materials { get; set; }
         public DbSet<MaterialReview> MaterialReviews { get; set; }
