@@ -1,4 +1,6 @@
-﻿namespace MaterialsAPI.Utilties
+﻿using MaterialsAPI.Services;
+
+namespace MaterialsAPI.Utilties
 {
     public static class ExtensionMethods
     {
@@ -7,6 +9,11 @@
             services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<IMaterialReviewRepository, MaterialReviewRepository>();
             services.AddScoped<IMaterialsRepository, MaterialsRepository>();
+        }
+
+        public static void AddServices(this IServiceCollection services)
+        {
+            services.AddScoped<EducationMaterialService>();
         }
     }
 }
