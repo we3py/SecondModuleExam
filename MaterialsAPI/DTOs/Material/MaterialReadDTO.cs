@@ -9,7 +9,7 @@ namespace MaterialsAPI.DTOs.Material
         public string Description { get; set; }
         public string Location { get; set; }
         public string MaterialTypeName { get; set; }
-        public List<MaterialReviewReadDTO> Reviews { get; set; }
+        public ICollection<MaterialReviewReadDTO> Reviews { get; set; }
         public DateTime PublicationDate { get; set; }
     }
 }
