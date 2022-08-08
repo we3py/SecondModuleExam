@@ -21,6 +21,13 @@ builder.Services.AddRepositories();
 builder.Services.AddServices();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton(mapper);
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(build =>
+    {
+        build.AllowAnyOrigin();
+    });
+});
 
 var app = builder.Build();
 
