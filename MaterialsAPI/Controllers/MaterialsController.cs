@@ -26,6 +26,7 @@ namespace MaterialsAPI.Controllers
             return Ok(await _materialService.GetAllMaterials());
         }
 
+        [SwaggerOperation(Summary = "Get material by ID")]
         [HttpGet]
         [Route("{id}")]
         //[Authorize(Roles = "admin, user")]
@@ -34,6 +35,7 @@ namespace MaterialsAPI.Controllers
             return Ok(await _materialService.GetMaterial(id));
         }
 
+        [SwaggerOperation(Summary = "Add new material")]
         [HttpPost]
         //[Authorize(Roles = "admin")]
         public async Task<IActionResult> AddMaterial(MaterialCreateUpdateDTO material)
@@ -42,6 +44,7 @@ namespace MaterialsAPI.Controllers
             return Created($"{HttpContext.Request.Path}/{id}", $"new Material with id= [{id}] added");
         }
 
+        [SwaggerOperation(Summary = "Update material")]
         [HttpPut]
         [Route("{id}")]
         //[Authorize(Roles = "admin")]
@@ -51,6 +54,7 @@ namespace MaterialsAPI.Controllers
             return Created($"{HttpContext.Request.Path}/{id}", $"new Material with id= [{id}] updated");
         }
 
+        [SwaggerOperation(Summary = "Delete material")]
         [HttpDelete]
         [Route("{id}")]
         //[Authorize(Roles = "admin")]
