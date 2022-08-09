@@ -17,6 +17,8 @@
         /// <param name="userCredentials">Pass usernam and password</param>
         /// <returns>JWT</returns>
         [HttpPost]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(UserLoginRegisterDTO))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [Route("LogIn")]
         public async Task<IActionResult> LogInAsync(UserLoginRegisterDTO userCredentials)
         {
@@ -33,6 +35,7 @@
         /// <returns>Role of registered user</returns>
         [HttpPost]
         [Route("registerAdmin")]
+        [SwaggerResponse(StatusCodes.Status201Created, Type = typeof(UserLoginRegisterDTO))]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> RegisterAdminAsync(UserLoginRegisterDTO admin)
         {
@@ -47,6 +50,7 @@
         /// <returns>Role of registered user</returns>
         [HttpPost]
         [Route("registerUser")]
+        [SwaggerResponse(StatusCodes.Status201Created, Type = typeof(UserLoginRegisterDTO))]
         [AllowAnonymous]
         public async Task<IActionResult> RegisterUserAsync(UserLoginRegisterDTO user)
         {
