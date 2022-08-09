@@ -9,7 +9,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var mapConfig = new AutoMapper.MapperConfiguration(c =>
+var mapConfig = new MapperConfiguration(c =>
 {
     c.AddProfile(new AuthorProfile());
     c.AddProfile(new MaterialProfile());
@@ -32,8 +32,8 @@ builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSqlServer<MaterialsContext>(builder.Configuration.GetConnectionString("MaterialsDB"));
-builder.Services.AddSqlServer<UserContext>(builder.Configuration.GetConnectionString("UsersDB"));
+builder.Services.AddSqlServer<MaterialsContext>(builder.Configuration["ConnectionStrings:MaterialsDB"]);
+builder.Services.AddSqlServer<UserContext>(builder.Configuration["ConnectionStrings:UsersDB"]);
 builder.Services.AddRepositories();
 builder.Services.AddServices();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -63,7 +63,6 @@ builder.Services.BuildSwagger();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-app.UseAuthentication();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -74,6 +73,7 @@ app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -25,9 +25,9 @@ namespace MaterialsAPI.Utilties
         {
             services.AddSwaggerGen(swagger =>
             {
-                swagger.SwaggerDoc("ex2", new OpenApiInfo
+                swagger.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Version = "ex2",
+                    Version = "v1",
                     Title = "SecondExamAPI",
                     Description = "web api made for utilize education materials"
                 });
