@@ -1,6 +1,4 @@
-﻿using MaterialsAPI.Data.Entities;
-
-namespace MaterialsAPI.UsersDATA
+﻿namespace MaterialsAPI.UsersDATA
 {
     public interface IUserRepository
     {
