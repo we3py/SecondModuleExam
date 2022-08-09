@@ -18,7 +18,7 @@
         [HttpGet]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ICollection<MaterialTypeReadDTO>))]
         [Authorize(Roles = "admin, user")]
-        public async Task<IActionResult> GetMaterialTypes()
+        public async Task<IActionResult> GetMaterialTypesAsync()
         {
             return Ok(await _materialTypeService.GetAllMaterialTypes());
         }
@@ -33,7 +33,7 @@
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(MaterialTypeReadDTO))]
         [SwaggerResponse(StatusCodes.Status404NotFound)]
         [Authorize(Roles = "admin, user")]
-        public async Task<IActionResult> GetMaterialType(int id)
+        public async Task<IActionResult> GetMaterialTypeAsync(int id)
         {
             return Ok(await _materialTypeService.GetMaterialTypeAsync(id));
         }
@@ -50,7 +50,7 @@
         [SwaggerResponse(StatusCodes.Status403Forbidden)]
         [Route("{id}/materials")]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> GetMaterialByType(int id)
+        public async Task<IActionResult> GetMaterialByTypeAsync(int id)
         {
             return Ok(await _materialTypeService.GetMaterialsByTypeAsync(id));
         }

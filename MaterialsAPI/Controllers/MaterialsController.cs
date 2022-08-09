@@ -18,7 +18,7 @@
         [HttpGet]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ICollection<MaterialReadDTO>))]
         [Authorize(Roles = "admin, user")]
-        public async Task<IActionResult> GetMaterials()
+        public async Task<IActionResult> GetMaterialsAsync()
         {
             return Ok(await _materialService.GetAllMaterialsAsync());
         }
@@ -33,7 +33,7 @@
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(MaterialReadDTO))]
         [SwaggerResponse(StatusCodes.Status404NotFound)]
         [Authorize(Roles = "admin, user")]
-        public async Task<IActionResult> GetMaterial(int id)
+        public async Task<IActionResult> GetMaterialAsync(int id)
         {
             return Ok(await _materialService.GetMaterialAsync(id));
         }
@@ -48,7 +48,7 @@
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [SwaggerResponse(StatusCodes.Status403Forbidden)]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> AddMaterial(MaterialCreateUpdateDTO material)
+        public async Task<IActionResult> AddMaterialAsync(MaterialCreateUpdateDTO material)
         {
             var id = await _materialService.AddMaterialAsync(material);
             return Created($"{HttpContext.Request.Path}/{id}", $"New educational material with id = [{id}] added");
@@ -66,7 +66,7 @@
         [SwaggerResponse(StatusCodes.Status404NotFound)]
         [SwaggerResponse(StatusCodes.Status403Forbidden)]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> UpdateMaterial(int id, MaterialCreateUpdateDTO material)
+        public async Task<IActionResult> UpdateMaterialAsync(int id, MaterialCreateUpdateDTO material)
         {
             var materialId = await _materialService.UpdateMaterialAsync(id, material);
             return Created($"{HttpContext.Request.Path}/{materialId}", $"Educational material with id = [{materialId}] updated");
@@ -83,7 +83,7 @@
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [SwaggerResponse(StatusCodes.Status403Forbidden)]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> DeleteMaterial(int id)
+        public async Task<IActionResult> DeleteMaterialAsync(int id)
         {
             var materialId = await _materialService.DeleteMaterialAsync(id);
             return NoContent();

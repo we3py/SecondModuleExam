@@ -18,7 +18,7 @@
         [HttpGet]
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ICollection<AuthorReadDTO>))]
         [Authorize(Roles = "admin, user")]
-        public async Task<IActionResult> GetAuthors()
+        public async Task<IActionResult> GetAuthorsAsync()
         {
             return Ok(await _authorService.GetAllAuthorsAsync());
         }
@@ -33,7 +33,7 @@
         [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(AuthorReadDTO))]
         [SwaggerResponse(StatusCodes.Status404NotFound)]
         [Authorize(Roles = "admin, user")]
-        public async Task<IActionResult> GetAuthor(int id)
+        public async Task<IActionResult> GetAuthorAsync(int id)
         {
             return Ok(await _authorService.GetAuthorAsync(id));
         }
@@ -49,7 +49,7 @@
         [SwaggerResponse(StatusCodes.Status404NotFound)]
         [SwaggerResponse(StatusCodes.Status403Forbidden)]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> GetMaterialsWithAverageMoreThanFiveFromAuthor(int id)
+        public async Task<IActionResult> GetMaterialsWithAverageMoreThanFiveFromAuthorAsync(int id)
         {
             return Ok(await _authorService.GetMaterialWithAverageMoreThanFiveByAuthorAsync(id));
         }

@@ -18,7 +18,7 @@
         /// <returns>JWT</returns>
         [HttpPost]
         [Route("LogIn")]
-        public async Task<IActionResult> LogIn(UserLoginRegisterDTO userCredentials)
+        public async Task<IActionResult> LogInAsync(UserLoginRegisterDTO userCredentials)
         {
             var user = userCredentials;
             var JWT = await _loggingRegisterService.LogInAsync(user.Username, user.Password);
@@ -34,7 +34,7 @@
         [HttpPost]
         [Route("registerAdmin")]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> RegisterAdmin(UserLoginRegisterDTO admin)
+        public async Task<IActionResult> RegisterAdminAsync(UserLoginRegisterDTO admin)
         {
             var registeredUser = await _loggingRegisterService.RegisterUserAsync(admin, "admin");
             return Created("", $"User with {registeredUser.Role} role was registered");
@@ -48,7 +48,7 @@
         [HttpPost]
         [Route("registerUser")]
         [AllowAnonymous]
-        public async Task<IActionResult> RegisterUser(UserLoginRegisterDTO user)
+        public async Task<IActionResult> RegisterUserAsync(UserLoginRegisterDTO user)
         {
             var registeredUser = await _loggingRegisterService.RegisterUserAsync(user, "user");
             return Created("", $"User with {registeredUser.Role} role was registered");
