@@ -1,4 +1,6 @@
-﻿using MaterialsAPI.Services;
+﻿using MaterialsAPI.Data.DAL.Interfaces;
+using MaterialsAPI.Services;
+using MaterialsAPI.UsersDATA;
 
 namespace MaterialsAPI.Utilties
 {
@@ -9,11 +11,13 @@ namespace MaterialsAPI.Utilties
             services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<IMaterialReviewRepository, MaterialReviewRepository>();
             services.AddScoped<IMaterialsRepository, MaterialsRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         public static void AddServices(this IServiceCollection services)
         {
             services.AddScoped<EducationMaterialService>();
+            services.AddScoped<LoggingRegisterService>();
         }
     }
 }
