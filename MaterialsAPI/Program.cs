@@ -1,3 +1,4 @@
+using MaterialsAPI.Data.DAL.Interfaces;
 using MaterialsAPI.MapperProfiles;
 using MaterialsAPI.Middlewares;
 using Serilog;
@@ -10,6 +11,7 @@ var mapConfig = new AutoMapper.MapperConfiguration(c =>
     c.AddProfile(new MaterialProfile());
     c.AddProfile(new MaterialReviewProfile());
     c.AddProfile(new MaterialTypeProfile());
+    c.AddProfile(new UserProfile());
 });
 var mapper = mapConfig.CreateMapper();
 
@@ -27,6 +29,7 @@ builder.Logging.AddSerilog(logger);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSqlServer<MaterialsContext>(builder.Configuration.GetConnectionString("MaterialsDB"));
+builder.Services.AddSqlServer<UserContext>(builder.Configuration.GetConnectionString("UsersDB"));
 builder.Services.AddRepositories();
 builder.Services.AddServices();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
