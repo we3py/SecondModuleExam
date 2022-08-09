@@ -1,7 +1,11 @@
 using MaterialsAPI.Data.DAL.Interfaces;
 using MaterialsAPI.MapperProfiles;
 using MaterialsAPI.Middlewares;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Serilog;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,10 +46,24 @@ builder.Services.AddCors(options =>
     });
 });
 builder.Services.AddScoped<ExceptionHandlingMiddleware>();
-
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    };
+});
+builder.Services.BuildSwagger();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseAuthentication();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
