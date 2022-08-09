@@ -17,8 +17,8 @@ namespace MaterialsAPI.Utilties
 
         public static void AddServices(this IServiceCollection services)
         {
-            services.AddScoped<EducationMaterialService>();
-            services.AddScoped<LoggingRegisterService>();
+            services.AddScoped<IEducationMaterialService, EducationMaterialService>();
+            services.AddScoped<ILoggingRegisterService, LoggingRegisterService>();
         }
 
         public static void BuildSwagger(this IServiceCollection services)
