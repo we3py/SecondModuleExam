@@ -13,6 +13,9 @@ namespace MaterialsAPI.Utilties
             services.AddScoped<IMaterialReviewRepository, MaterialReviewRepository>();
             services.AddScoped<IMaterialsRepository, MaterialsRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRepository<MaterialType>, Repository<MaterialType>>();
+            services.AddScoped<IMaterialTypeService, MaterialTypeService>();
+
         }
 
         public static void AddServices(this IServiceCollection services)
