@@ -1,6 +1,4 @@
-﻿using MaterialsAPI.Data.DAL.Interfaces;
-
-namespace MaterialsAPI.Services
+﻿namespace MaterialsAPI.Services
 {
     public class AuthorService : IAuthorService
     {

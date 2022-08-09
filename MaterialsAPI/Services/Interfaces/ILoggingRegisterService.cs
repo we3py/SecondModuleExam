@@ -1,6 +1,4 @@
-﻿using MaterialsAPI.DTOs.User;
-
-namespace MaterialsAPI.Services
+﻿namespace MaterialsAPI.Services
 {
     public interface ILoggingRegisterService
     {

@@ -1,11 +1,4 @@
-﻿using MaterialsAPI.Data.DAL.Interfaces;
-using MaterialsAPI.Services;
-using MaterialsAPI.Services.Interfaces;
-using MaterialsAPI.UsersDATA;
-using Microsoft.OpenApi.Models;
-using System.Reflection;
-
-namespace MaterialsAPI.Utilties
+﻿namespace MaterialsAPI.Utilties
 {
     public static class ExtensionMethods
     {

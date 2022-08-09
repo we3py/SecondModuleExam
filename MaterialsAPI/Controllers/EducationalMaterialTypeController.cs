@@ -1,10 +1,4 @@
-﻿using MaterialsAPI.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Swashbuckle.AspNetCore.Annotations;
-
-namespace MaterialsAPI.Controllers
+﻿namespace MaterialsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

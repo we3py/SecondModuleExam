@@ -1,9 +1,4 @@
-﻿using MaterialsAPI.DTOs.User;
-using MaterialsAPI.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-
-namespace MaterialsAPI.Controllers
+﻿namespace MaterialsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

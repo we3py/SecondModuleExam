@@ -1,7 +1,4 @@
-﻿using MaterialsAPI.Data.DAL.Interfaces;
-using MaterialsAPI.Services.Interfaces;
-
-namespace MaterialsAPI.Services
+﻿namespace MaterialsAPI.Services
 {
     public class ReviewsService : IReviewsService
     {

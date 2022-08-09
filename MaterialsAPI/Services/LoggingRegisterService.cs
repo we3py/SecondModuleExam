@@ -1,11 +1,4 @@
-﻿using MaterialsAPI.DTOs.User;
-using MaterialsAPI.UsersDATA;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-
-namespace MaterialsAPI.Services
+﻿namespace MaterialsAPI.Services
 {
     public class LoggingRegisterService : ILoggingRegisterService
     {

@@ -2,7 +2,7 @@
 {
     public class LoggingMiddleware : IMiddleware
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<LoggingMiddleware> _logger;
 
         public LoggingMiddleware(ILogger<LoggingMiddleware> logger)
         {

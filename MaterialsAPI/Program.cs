@@ -1,12 +1,3 @@
-using MaterialsAPI.Data.DAL.Interfaces;
-using MaterialsAPI.MapperProfiles;
-using MaterialsAPI.Middlewares;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Serilog;
-using System.Text;
-
 var builder = WebApplication.CreateBuilder(args);
 
 var mapConfig = new MapperConfiguration(c =>
