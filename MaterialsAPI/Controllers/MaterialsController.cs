@@ -21,7 +21,7 @@ namespace MaterialsAPI.Controllers
         [Authorize(Roles = "admin, user")]        
         public async Task<IActionResult> GetMaterials()
         {
-            return Ok(await _materialService.GetAllMaterials());
+            return Ok(await _materialService.GetAllMaterialsAsync());
         }
 
         [SwaggerOperation(Summary = "Get material by ID")]
@@ -30,7 +30,7 @@ namespace MaterialsAPI.Controllers
         [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> GetMaterial(int id)
         {
-            return Ok(await _materialService.GetMaterial(id));
+            return Ok(await _materialService.GetMaterialAsync(id));
         }
 
         [SwaggerOperation(Summary = "Add new material")]
@@ -38,7 +38,7 @@ namespace MaterialsAPI.Controllers
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> AddMaterial(MaterialCreateUpdateDTO material)
         {
-            var id = await _materialService.AddMaterial(material);
+            var id = await _materialService.AddMaterialAsync(material);
             return Created($"{HttpContext.Request.Path}/{id}", $"new Material with id= [{id}] added");
         }
 
@@ -48,7 +48,7 @@ namespace MaterialsAPI.Controllers
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> UpdateMaterial(int materialToUpdateId, MaterialCreateUpdateDTO material)
         {
-            var id = await _materialService.UpdateMaterial(materialToUpdateId, material);
+            var id = await _materialService.UpdateMaterialAsync(materialToUpdateId, material);
             return Created($"{HttpContext.Request.Path}/{id}", $"new Material with id= [{id}] updated");
         }
 
@@ -58,7 +58,7 @@ namespace MaterialsAPI.Controllers
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteMaterial(int materialId)
         {
-            var id = await _materialService.DeleteMaterial(materialId);
+            var id = await _materialService.DeleteMaterialAsync(materialId);
             return Created($"{HttpContext.Request.Path}/{id}", $"Material with id= [{id}] deleted");
         }
     }

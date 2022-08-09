@@ -2,7 +2,7 @@
 
 namespace MaterialsAPI.Services
 {
-    public class EducationMaterialService
+    public class EducationMaterialService : IEducationMaterialService
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
@@ -13,7 +13,7 @@ namespace MaterialsAPI.Services
             _mapper = mapper;
         }
 
-        public async Task<List<MaterialReadDTO>> GetAllMaterials()
+        public async Task<List<MaterialReadDTO>> GetAllMaterialsAsync()
         {
             List<Task<MaterialReadDTO>> tasks = new List<Task<MaterialReadDTO>>();
             var materials = await _unitOfWork.MaterialsRepository.GetMaterials();
@@ -30,7 +30,7 @@ namespace MaterialsAPI.Services
             return results.ToList();
         }
 
-        public async Task<MaterialReadDTO> GetMaterial(int materialId)
+        public async Task<MaterialReadDTO> GetMaterialAsync(int materialId)
         {
             var material = await _unitOfWork.MaterialsRepository.GetMaterialById(materialId);
 
@@ -40,7 +40,7 @@ namespace MaterialsAPI.Services
             return _mapper.Map<MaterialReadDTO>(material);
         }
 
-        public async Task<int> AddMaterial(MaterialCreateUpdateDTO materialToAdd)
+        public async Task<int> AddMaterialAsync(MaterialCreateUpdateDTO materialToAdd)
         {
             var material = _mapper.Map<Material>(materialToAdd);
             await _unitOfWork.MaterialsRepository.AddAsync(material);
@@ -49,21 +49,21 @@ namespace MaterialsAPI.Services
             return material.Id;
         }
 
-        public async Task<int> UpdateMaterial(int materialToUpdateId, MaterialCreateUpdateDTO updatedMaterial)
+        public async Task<int> UpdateMaterialAsync(int materialToUpdateId, MaterialCreateUpdateDTO updatedMaterial)
         {
             var material = await _unitOfWork.MaterialsRepository.GetMaterialById(materialToUpdateId);
             if (material == null)
                 throw new KeyNotFoundException("Material not exist");
 
             var editedMaterial = _mapper.Map(updatedMaterial, material);
-             
-             _unitOfWork.MaterialsRepository.Update(editedMaterial);
+
+            _unitOfWork.MaterialsRepository.Update(editedMaterial);
             await _unitOfWork.MaterialsRepository.SaveAsync();
 
             return editedMaterial.Id;
         }
 
-        public async Task<int> DeleteMaterial(int materialId)
+        public async Task<int> DeleteMaterialAsync(int materialId)
         {
             var material = await _unitOfWork.MaterialsRepository.GetEntityAsync(materialId);
             if (material == null)
@@ -74,6 +74,5 @@ namespace MaterialsAPI.Services
 
             return materialId;
         }
-
     }
 }

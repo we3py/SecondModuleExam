@@ -20,7 +20,7 @@ namespace MaterialsAPI.Controllers
         [Route("LogIn")]
         public async Task<IActionResult> LogIn(string name, string password)
         {
-            var JWT = await _loggingRegisterService.LogIn(name, password);
+            var JWT = await _loggingRegisterService.LogInAsync(name, password);
             return Ok(JWT);
         }
 
@@ -29,8 +29,8 @@ namespace MaterialsAPI.Controllers
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> RegisterAdmin(UserRegisterDTO admin)
         {
-            var registeredUser = await _loggingRegisterService.RegisterAdmin(admin);
-            return Created("", $"User with {registeredUser} role was registered");
+            var registeredUser = await _loggingRegisterService.RegisterUserAsync(admin, "admin");
+            return Created("", $"User with {registeredUser.Role} role was registered");
         }
 
         [HttpPost]
@@ -38,8 +38,8 @@ namespace MaterialsAPI.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> RegisterUser(UserRegisterDTO user)
         {
-            var registeredUser = await _loggingRegisterService.RegisterUser(user);
-            return Created("", $"User with {registeredUser} role was registered");
+            var registeredUser = await _loggingRegisterService.RegisterUserAsync(user, "user");
+            return Created("", $"User with {registeredUser.Role} role was registered");
         }
     }
 }
