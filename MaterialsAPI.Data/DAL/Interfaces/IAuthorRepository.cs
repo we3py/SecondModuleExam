@@ -1,5 +1,4 @@
-﻿
-namespace MaterialsAPI.Data.DAL.Repositories
+﻿namespace MaterialsAPI.Data.DAL.Interfaces
 {
     public interface IAuthorRepository
     {

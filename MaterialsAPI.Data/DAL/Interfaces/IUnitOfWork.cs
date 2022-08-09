@@ -1,5 +1,4 @@
-﻿
-namespace MaterialsAPI.Data.DAL
+﻿namespace MaterialsAPI.Data.DAL.Interfaces
 {
     public interface IUnitOfWork
     {
