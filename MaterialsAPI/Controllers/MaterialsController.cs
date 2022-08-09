@@ -46,20 +46,20 @@ namespace MaterialsAPI.Controllers
         [HttpPut]
         [Route("{id}")]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> UpdateMaterial(int materialToUpdateId, MaterialCreateUpdateDTO material)
+        public async Task<IActionResult> UpdateMaterial(int id, MaterialCreateUpdateDTO material)
         {
-            var id = await _materialService.UpdateMaterialAsync(materialToUpdateId, material);
-            return Created($"{HttpContext.Request.Path}/{id}", $"new Material with id= [{id}] updated");
+            var materialId = await _materialService.UpdateMaterialAsync(id, material);
+            return Created($"{HttpContext.Request.Path}/{materialId}", $"new Material with id= [{materialId}] updated");
         }
 
         [SwaggerOperation(Summary = "Delete material")]
         [HttpDelete]
         [Route("{id}")]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> DeleteMaterial(int materialId)
+        public async Task<IActionResult> DeleteMaterial(int id)
         {
-            var id = await _materialService.DeleteMaterialAsync(materialId);
-            return Created($"{HttpContext.Request.Path}/{id}", $"Material with id= [{id}] deleted");
+            var materialId = await _materialService.DeleteMaterialAsync(id);
+            return Created($"{HttpContext.Request.Path}/{materialId}", $"Material with id= [{materialId}] deleted");
         }
     }
 }
