@@ -5,5 +5,6 @@
         IAuthorRepository AuthorRepository { get; set; }
         IMaterialReviewRepository MaterialReviewRepository { get; set; }
         IMaterialsRepository MaterialsRepository { get; set; }
+        IRepository<MaterialType> MaterialTypesRepository { get; set; }
     }
 }
