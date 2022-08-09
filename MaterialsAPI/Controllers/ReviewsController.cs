@@ -15,8 +15,8 @@
         /// Get all educational material reviews
         /// </summary>
         /// <returns>List of educational material reviews</returns>
-        [SwaggerOperation(Summary = "Get all educational material reviews")]
         [HttpGet]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ICollection<MaterialReviewReadDTO>))]
         [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> GetMaterialReviewsAsync()
         {
@@ -28,9 +28,10 @@
         /// </summary>
         /// <param name="id">ID of educational material review you want to get</param>
         /// <returns>Single educational material review</returns>
-        [SwaggerOperation(Summary = "Get educational material review by ID")]
         [HttpGet]
         [Route("{id}")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(MaterialReviewReadDTO))]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
         [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> GetMaterialReviewAsync(int id)
         {
@@ -42,8 +43,9 @@
         /// </summary>
         /// <param name="materialReview">Pass educational material review parameters</param>
         /// <returns>ID of created educational material review</returns>
-        [SwaggerOperation(Summary = "Add new educational material review")]
         [HttpPost]
+        [SwaggerResponse(StatusCodes.Status201Created, Type = typeof(MaterialReviewCreateUpdateDTO))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> AddMaterialReviewAsync(MaterialReviewCreateUpdateDTO materialReview)
         {
@@ -57,9 +59,10 @@
         /// <param name="id">ID of educational material review you want to update</param>
         /// <param name="material">Pass educational material review parameters</param>
         /// <returns>ID of updated educational material review</returns>
-        [SwaggerOperation(Summary = "Update educational material review")]
         [HttpPut]
         [Route("{id}")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(MaterialReviewCreateUpdateDTO))]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
         [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> UpdateMaterialReviewAsync(int id, MaterialReviewCreateUpdateDTO material)
         {
@@ -72,14 +75,16 @@
         /// </summary>
         /// <param name="id">ID of educational material review you want to delete</param>
         /// <returns>ID of deleted educational material review</returns>
-        [SwaggerOperation(Summary = "Delete educational material")]
         [HttpDelete]
         [Route("{id}")]
+        [SwaggerResponse(StatusCodes.Status204NoContent)]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status403Forbidden)]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteMaterialReviewAsync(int id)
         {
             var materialReviewId = await _reviewService.DeleteMaterialReviewAsync(id);
-            return Created($"{HttpContext.Request.Path}/{materialReviewId}", $"Educational material review with id= [{materialReviewId}] deleted");
+            return NoContent();
         }
     }
 }

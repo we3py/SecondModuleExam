@@ -15,8 +15,8 @@
         /// Get educational material types
         /// </summary>
         /// <returns>Educational material types</returns>
-        [SwaggerOperation(Summary = "Get all materials")]
         [HttpGet]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ICollection<MaterialTypeReadDTO>))]
         [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> GetMaterialTypes()
         {
@@ -28,9 +28,10 @@
         /// </summary>
         /// <param name="id">ID of educational material type you want to get</param>
         /// <returns>Single educational material type</returns>
-        [SwaggerOperation(Summary = "Get material by ID")]
         [HttpGet]
         [Route("{id}")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(MaterialTypeReadDTO))]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
         [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> GetMaterialType(int id)
         {
@@ -44,6 +45,9 @@
         /// <returns>List of educational materials</returns>
         [SwaggerOperation(Summary = "Get material by ID")]
         [HttpGet]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(MaterialReadDTO))]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
+        [SwaggerResponse(StatusCodes.Status403Forbidden)]
         [Route("{id}/materials")]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> GetMaterialByType(int id)

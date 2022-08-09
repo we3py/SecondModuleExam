@@ -15,9 +15,9 @@
         /// Get educational materials
         /// </summary>
         /// <returns>List of education materials</returns>
-        [SwaggerOperation(Summary = "Get all educational materials")]
         [HttpGet]
-        [Authorize(Roles = "admin, user")]        
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ICollection<MaterialReadDTO>))]
+        [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> GetMaterials()
         {
             return Ok(await _materialService.GetAllMaterialsAsync());
@@ -28,9 +28,10 @@
         /// </summary>
         /// <param name="id">ID of material you want to get</param>
         /// <returns>Single educational material</returns>
-        [SwaggerOperation(Summary = "Get educational material by ID")]
         [HttpGet]
         [Route("{id}")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(MaterialReadDTO))]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
         [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> GetMaterial(int id)
         {
@@ -42,8 +43,10 @@
         /// </summary>
         /// <param name="material">Pass educational material parameters</param>
         /// <returns>ID of created educational material</returns>
-        [SwaggerOperation(Summary = "Add new educational material")]
         [HttpPost]
+        [SwaggerResponse(StatusCodes.Status201Created, Type = typeof(MaterialCreateUpdateDTO))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status403Forbidden)]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> AddMaterial(MaterialCreateUpdateDTO material)
         {
@@ -57,9 +60,11 @@
         /// <param name="id">ID of educational material you want to update</param>
         /// <param name="material">Pass edcuational material parameters</param>
         /// <returns>ID of updated educational material</returns>
-        [SwaggerOperation(Summary = "Update educational material")]
         [HttpPut]
         [Route("{id}")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(MaterialCreateUpdateDTO))]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
+        [SwaggerResponse(StatusCodes.Status403Forbidden)]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> UpdateMaterial(int id, MaterialCreateUpdateDTO material)
         {
@@ -71,15 +76,17 @@
         /// Delete educational material
         /// </summary>
         /// <param name="id">ID of educational material you want to delete</param>
-        /// <returnsID>ID of deleted material</returns>
-        [SwaggerOperation(Summary = "Delete educational material")]
+        /// <returnsID></returns>
         [HttpDelete]
         [Route("{id}")]
+        [SwaggerResponse(StatusCodes.Status204NoContent)]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status403Forbidden)]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteMaterial(int id)
         {
             var materialId = await _materialService.DeleteMaterialAsync(id);
-            return Created($"{HttpContext.Request.Path}/{materialId}", $"Educational Material with id = [{materialId}] deleted");
+            return NoContent();
         }
     }
 }

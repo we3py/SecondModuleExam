@@ -16,9 +16,7 @@ var logger = new LoggerConfiguration()
   .CreateLogger();
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
 builder.Services.AddEndpointsApiExplorer();

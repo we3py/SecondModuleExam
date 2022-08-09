@@ -16,6 +16,7 @@
         /// </summary>
         /// <returns>Authors list</returns>
         [HttpGet]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ICollection<AuthorReadDTO>))]
         [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> GetAuthors()
         {
@@ -29,6 +30,8 @@
         /// <returns>Single Author</returns>
         [HttpGet]
         [Route("{id}")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(AuthorReadDTO))]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
         [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> GetAuthor(int id)
         {
@@ -42,6 +45,9 @@
         /// <returns>List of Educational materials</returns>
         [HttpGet]
         [Route("{id}/Materials")]
+        [SwaggerResponse(StatusCodes.Status200OK, Type = typeof(ICollection<MaterialReadDTO>))]
+        [SwaggerResponse(StatusCodes.Status404NotFound)]
+        [SwaggerResponse(StatusCodes.Status403Forbidden)]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> GetMaterialsWithAverageMoreThanFiveFromAuthor(int id)
         {
