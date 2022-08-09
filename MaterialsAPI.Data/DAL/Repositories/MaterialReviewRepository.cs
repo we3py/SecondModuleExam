@@ -10,5 +10,11 @@
             => await MaterialContext.MaterialReviews
             .Include(mr => mr.Material)
             .ToListAsync();
+
+        public async Task<MaterialReview> GetById(int id)
+            => await MaterialContext.MaterialReviews
+            .Include(mr => mr.Material)
+            .Where(mr => mr.Id == id)
+            .FirstOrDefaultAsync();
     }
 }
