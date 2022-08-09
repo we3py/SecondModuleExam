@@ -36,6 +36,7 @@
         [HttpPost]
         [Route("registerAdmin")]
         [SwaggerResponse(StatusCodes.Status201Created, Type = typeof(UserLoginRegisterDTO))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> RegisterAdminAsync(UserLoginRegisterDTO admin)
         {
@@ -51,6 +52,7 @@
         [HttpPost]
         [Route("registerUser")]
         [SwaggerResponse(StatusCodes.Status201Created, Type = typeof(UserLoginRegisterDTO))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [AllowAnonymous]
         public async Task<IActionResult> RegisterUserAsync(UserLoginRegisterDTO user)
         {
