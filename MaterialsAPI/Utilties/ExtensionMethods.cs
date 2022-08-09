@@ -1,5 +1,6 @@
 ﻿using MaterialsAPI.Data.DAL.Interfaces;
 using MaterialsAPI.Services;
+using MaterialsAPI.Services.Interfaces;
 using MaterialsAPI.UsersDATA;
 using Microsoft.OpenApi.Models;
 
@@ -14,7 +15,6 @@ namespace MaterialsAPI.Utilties
             services.AddScoped<IMaterialsRepository, MaterialsRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRepository<MaterialType>, Repository<MaterialType>>();
-            services.AddScoped<IMaterialTypeService, MaterialTypeService>();
 
         }
 
@@ -23,6 +23,8 @@ namespace MaterialsAPI.Utilties
             services.AddScoped<IEducationMaterialService, EducationMaterialService>();
             services.AddScoped<ILoggingRegisterService, LoggingRegisterService>();
             services.AddScoped<IAuthorService, AuthorService>();
+            services.AddScoped<IMaterialTypeService, MaterialTypeService>();
+            services.AddScoped<IReviewsService, ReviewsService>();
         }
 
         public static void BuildSwagger(this IServiceCollection services)
