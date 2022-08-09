@@ -11,6 +11,8 @@
             _materialsContext = materialsContext;
         }
 
+        public async Task<ICollection<T>> GetAll()
+            => await _materialsContext.Set<T>().ToListAsync();
         public async Task AddAsync(T entity)
             => await _materialsContext.Set<T>().AddAsync(entity);
 
