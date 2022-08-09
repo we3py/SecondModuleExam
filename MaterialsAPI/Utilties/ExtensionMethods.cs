@@ -19,6 +19,7 @@ namespace MaterialsAPI.Utilties
         {
             services.AddScoped<IEducationMaterialService, EducationMaterialService>();
             services.AddScoped<ILoggingRegisterService, LoggingRegisterService>();
+            services.AddScoped<IAuthorService, AuthorService>();
         }
 
         public static void BuildSwagger(this IServiceCollection services)
