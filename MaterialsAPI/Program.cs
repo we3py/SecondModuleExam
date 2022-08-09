@@ -46,6 +46,7 @@ builder.Services.AddCors(options =>
     });
 });
 builder.Services.AddScoped<ExceptionHandlingMiddleware>();
+builder.Services.AddScoped<LoggingMiddleware>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata = false;
@@ -68,7 +69,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseMiddleware<LoggingMiddleware>();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
