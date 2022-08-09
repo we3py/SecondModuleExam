@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MaterialsAPI.Services
 {
-    public class LoggingRegisterService
+    public class LoggingRegisterService : ILoggingRegisterService
     {
         private IMapper _mapper;
         private readonly IConfiguration _config;
@@ -20,27 +20,17 @@ namespace MaterialsAPI.Services
             _config = configuration;
         }
 
-        public async Task<string> RegisterAdmin(UserRegisterDTO adminToRegister)
-        {
-            var user = _mapper.Map<User>(adminToRegister);
-            user.Role = "admin";
-            _userRepository.AddUser(user);
-            _userRepository.SaveAsync();
-
-            return user.Role;
-        }
-
-        public async Task<string> RegisterUser(UserRegisterDTO userToRegister)
+        public async Task<User> RegisterUserAsync(UserRegisterDTO userToRegister, string role)
         {
             var user = _mapper.Map<User>(userToRegister);
-            user.Role = "user";
+            user.Role = role;
             _userRepository.AddUser(user);
             _userRepository.SaveAsync();
 
-            return user.Role;
+            return user;
         }
 
-        public async Task<string> LogIn(string username, string password)
+        public async Task<string> LogInAsync(string username, string password)
         {
             var user = await _userRepository.GetUserByCredentials(username, password);
             if (user == null)
@@ -50,7 +40,7 @@ namespace MaterialsAPI.Services
         }
 
         private string GenereateJWT(User user)
-        {        
+        {
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
