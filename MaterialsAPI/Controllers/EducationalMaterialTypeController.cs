@@ -17,6 +17,10 @@ namespace MaterialsAPI.Controllers
             _materialTypeService = materialTypeService;
         }
 
+        /// <summary>
+        /// Get educational material types
+        /// </summary>
+        /// <returns>Educational material types</returns>
         [SwaggerOperation(Summary = "Get all materials")]
         [HttpGet]
         [Authorize(Roles = "admin, user")]
@@ -25,6 +29,11 @@ namespace MaterialsAPI.Controllers
             return Ok(await _materialTypeService.GetAllMaterialTypes());
         }
 
+        /// <summary>
+        /// Get specify educational material
+        /// </summary>
+        /// <param name="id">ID of educational material type you want to get</param>
+        /// <returns>Single educational material type</returns>
         [SwaggerOperation(Summary = "Get material by ID")]
         [HttpGet]
         [Route("{id}")]
@@ -34,6 +43,11 @@ namespace MaterialsAPI.Controllers
             return Ok(await _materialTypeService.GetMaterialTypeAsync(id));
         }
 
+        /// <summary>
+        /// Get educational materials from specify educational material types
+        /// </summary>
+        /// <param name="id">ID of educational material type</param>
+        /// <returns>List of educational materials</returns>
         [SwaggerOperation(Summary = "Get material by ID")]
         [HttpGet]
         [Route("{id}/materials")]

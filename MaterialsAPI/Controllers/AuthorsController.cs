@@ -17,6 +17,10 @@ namespace MaterialsAPI.Controllers
             _authorService = authorService;
         }
 
+        /// <summary>
+        /// Get authors list
+        /// </summary>
+        /// <returns>Authors list</returns>
         [SwaggerOperation(Summary = "Get all authors")]
         [HttpGet]
         [Authorize(Roles = "admin, user")]
@@ -25,6 +29,11 @@ namespace MaterialsAPI.Controllers
             return Ok(await _authorService.GetAllAuthorsAsync());
         }
 
+        /// <summary>
+        /// Get author by id
+        /// </summary>
+        /// <param name="id">ID of author you want to get</param>
+        /// <returns>Single Author</returns>
         [SwaggerOperation(Summary = "Get author by ID")]
         [HttpGet]
         [Route("{id}")]
@@ -34,6 +43,11 @@ namespace MaterialsAPI.Controllers
             return Ok(await _authorService.GetAuthorAsync(id));
         }
 
+        /// <summary>
+        /// Get materials from specify author with average rating more then 5
+        /// </summary>
+        /// <param name="id">id of the author from whom you want to extract educational materials</param>
+        /// <returns>List of Educational materials</returns>
         [SwaggerOperation(Summary = "Get material from author with average rating more than 5")]
         [HttpGet]
         [Route("{id}/Materials")]
