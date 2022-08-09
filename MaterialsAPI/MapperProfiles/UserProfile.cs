@@ -6,7 +6,7 @@ namespace MaterialsAPI.MapperProfiles
     {
         public UserProfile()
         {
-            CreateMap<UserRegisterDTO, User>();
+            CreateMap<UserLoginRegisterDTO, User>();
         }
     }
 }

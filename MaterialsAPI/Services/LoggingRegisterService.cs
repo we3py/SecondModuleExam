@@ -20,7 +20,7 @@ namespace MaterialsAPI.Services
             _config = configuration;
         }
 
-        public async Task<User> RegisterUserAsync(UserRegisterDTO userToRegister, string role)
+        public async Task<User> RegisterUserAsync(UserLoginRegisterDTO userToRegister, string role)
         {
             var user = _mapper.Map<User>(userToRegister);
             user.Role = role;
