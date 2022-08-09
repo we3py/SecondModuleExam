@@ -27,6 +27,12 @@
                 context.Response.StatusCode = 404;
                 await context.Response.WriteAsync(e.Message);
             }
+            catch (NullReferenceException e)
+            {
+                _logger.LogError(e, e.Message);
+                context.Response.StatusCode = 404;
+                await context.Response.WriteAsync(e.Message);
+            }
             catch (Exception e)
             {
                 _logger.LogError(e, e.Message);
