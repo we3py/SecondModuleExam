@@ -1,4 +1,6 @@
-﻿namespace MaterialsAPI.Services
+﻿using MaterialsAPI.Data.DAL.Interfaces;
+
+namespace MaterialsAPI.Services
 {
     public class EducationMaterialService
     {
