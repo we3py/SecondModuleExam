@@ -3,6 +3,7 @@ using MaterialsAPI.Services;
 using MaterialsAPI.Services.Interfaces;
 using MaterialsAPI.UsersDATA;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace MaterialsAPI.Utilties
 {
@@ -38,6 +39,9 @@ namespace MaterialsAPI.Utilties
                     Description = "web api made for utilize education materials"
                 });
 
+                var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                swagger.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+
                 swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
                     Name = "Authorization",
@@ -63,7 +67,7 @@ namespace MaterialsAPI.Utilties
                     }
                 });
 
-                swagger.EnableAnnotations();               
+                swagger.EnableAnnotations();      
             });
         }
     }
