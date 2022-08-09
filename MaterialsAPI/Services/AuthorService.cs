@@ -53,7 +53,7 @@ namespace MaterialsAPI.Services
 
             foreach (var material in author.Materials)
             {
-                if (material.Reviews == null)
+                if (material.Reviews.Count == 0)
                     continue;
 
                 if (material.Reviews.Average(m => m.Rating) > 5)
