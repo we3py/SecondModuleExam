@@ -9,6 +9,9 @@
         public async Task<ICollection<Author>> GetAll()
             => await MaterialContext.Authors
             .Include(a => a.Materials)
+                .ThenInclude(m => m.Reviews)
+            .Include(a => a.Materials)
+                .ThenInclude(m => m.MaterialType)
             .ToListAsync();
 
         public async Task<Author> GetByIdWithMaterialsAndReviews(int id)

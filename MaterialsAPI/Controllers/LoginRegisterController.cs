@@ -21,11 +21,12 @@ namespace MaterialsAPI.Controllers
         /// </summary>
         /// <param name="userCredentials">Pass usernam and password</param>
         /// <returns>JWT</returns>
-        [HttpGet]
+        [HttpPost]
         [Route("LogIn")]
         public async Task<IActionResult> LogIn(UserLoginRegisterDTO userCredentials)
         {
-            var JWT = await _loggingRegisterService.LogInAsync(userCredentials.Username, userCredentials.Password);
+            var user = userCredentials;
+            var JWT = await _loggingRegisterService.LogInAsync(user.Username, user.Password);
             return Ok(JWT);
         }
 
