@@ -9,9 +9,9 @@ namespace MaterialsAPI.Controllers
     [ApiController]
     public class LoginRegisterController : ControllerBase
     {
-        private LoggingRegisterService _loggingRegisterService;
+        private ILoggingRegisterService _loggingRegisterService;
 
-        public LoginRegisterController(LoggingRegisterService loggingRegisterService)
+        public LoginRegisterController(ILoggingRegisterService loggingRegisterService)
         {
             _loggingRegisterService = loggingRegisterService;
         }

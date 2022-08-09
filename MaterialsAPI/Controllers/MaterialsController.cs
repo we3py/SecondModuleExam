@@ -9,9 +9,9 @@ namespace MaterialsAPI.Controllers
     [ApiController]
     public class MaterialsController : ControllerBase
     {
-        private EducationMaterialService _materialService;
+        private IEducationMaterialService _materialService;
 
-        public MaterialsController(EducationMaterialService materialService)
+        public MaterialsController(IEducationMaterialService materialService)
         {
             _materialService = materialService;
         }
