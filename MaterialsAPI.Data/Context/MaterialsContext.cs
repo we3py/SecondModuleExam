@@ -2,7 +2,7 @@
 {
     public class MaterialsContext : DbContext
     {
-        public MaterialsContext(DbContextOptions options) : base(options)
+        public MaterialsContext(DbContextOptions<MaterialsContext> options) : base(options)
         {
         }
 
