@@ -1,5 +1,6 @@
 ﻿using MaterialsAPI.DTOs.User;
 using MaterialsAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MaterialsAPI.Controllers
@@ -25,6 +26,7 @@ namespace MaterialsAPI.Controllers
 
         [HttpPost]
         [Route("registerAdmin")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> RegisterAdmin(UserRegisterDTO admin)
         {
             var registeredUser = await _loggingRegisterService.RegisterAdmin(admin);
@@ -33,6 +35,7 @@ namespace MaterialsAPI.Controllers
 
         [HttpPost]
         [Route("registerUser")]
+        [AllowAnonymous]
         public async Task<IActionResult> RegisterUser(UserRegisterDTO user)
         {
             var registeredUser = await _loggingRegisterService.RegisterUser(user);
