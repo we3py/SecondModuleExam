@@ -15,6 +15,8 @@
             => await MaterialContext.Authors
             .Include(a => a.Materials)
                 .ThenInclude(m => m.Reviews)
+            .Include(a => a.Materials)
+                .ThenInclude(m => m.MaterialType)
             .Where(a => a.Id == id)
             .FirstOrDefaultAsync();
     }
